@@ -1,0 +1,349 @@
+.everything{
+    padding: 6%;
+    background-color: #f9fbfd;
+}
+.section{
+    margin-top: 4rem;
+}
+nav{
+    display: grid;
+}
+/* ------------For Navbar --------------- */
+.desk-navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.desk-navbar ul{
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+}
+.desk-navbar a{
+    text-decoration: none;
+}
+.user-image{
+    display: flex;
+    justify-content: flex-end;
+    width: 12%;
+    align-items: center;
+    gap: 0.8rem;
+}
+.user-image img{
+    width: 40%;
+    border: 1px solid #DEE2E6;
+    border-radius: 50%;
+    padding: 3px;
+    cursor: pointer;
+}
+.user-image p{
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* ----------user active window------------ */
+.user-info{
+   display: none;
+}
+.active-user{
+    height: fit-content;
+    display: grid !important;
+    gap: 2rem;
+    background-color: #fff;
+    width: fit-content;
+    left: 80%;
+    position: absolute;
+    padding: 2rem;
+    border-radius: 4px;
+    border: none;
+    top: 24%;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15) !important;
+    z-index: 999999999999;
+}
+.login-button{
+    height: auto;
+    display: block;
+    background-color: none;
+    width: auto;
+    position: unset;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    z-index: 0;
+}
+.active-user a{
+    text-decoration: none;
+    cursor: pointer;
+}
+.active-user button{
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    user-select: none;
+    touch-action: manipulation;
+}
+.active-user .shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsl(0deg 0% 0% / 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition: transform
+       600ms
+       cubic-bezier(.3, .7, .4, 1);
+}
+.active-user .edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient(
+       to left,
+       hsl(340deg 100% 16%) 0%,
+       hsl(340deg 100% 32%) 8%,
+       hsl(340deg 100% 32%) 92%,
+       hsl(340deg 100% 16%) 100%
+     );
+}
+.active-user .front {
+    display: block;
+    position: relative;
+    padding: 12px 27px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: white;
+    background: hsl(345deg 100% 47%);
+    will-change: transform;
+    transform: translateY(-4px);
+    transition: transform
+       600ms
+       cubic-bezier(.3, .7, .4, 1);
+}
+.active-user button:hover {
+    filter: brightness(110%);
+}
+   
+.active-user  button:hover .front {
+    transform: translateY(-6px);
+    transition: transform
+       250ms
+       cubic-bezier(.3, .7, .4, 1.5);
+}
+   
+.active-user  button:active .front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+}
+   
+.active-user  button:hover .shadow {
+    transform: translateY(4px);
+    transition: transform
+       250ms
+       cubic-bezier(.3, .7, .4, 1.5);
+}
+   
+.active-user  button:active .shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+}
+   
+.active-user  button:focus:not(:focus-visible) {
+    outline: none;
+}
+.user-overlay{
+    opacity: 0;
+    display: none;
+    position: fixed;
+    background-color: rgba(0,0,0,.3) !important;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 999999999;
+}
+
+/*----Active windows for both projects and tasks---- */
+.task-overlay{
+    opacity: 0;
+    display: none;
+    position: fixed;
+    background-color: rgba(0,0,0,.3) !important;
+    height: 100%;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 999999999;
+}
+.task-window{
+    background-color: #fff;
+    border: 2px solid #fff;
+    display: none;
+    flex-direction: column;
+    height: 62vh;
+    left: 50%;
+    opacity: 0;
+    overflow-x: hidden;
+    padding-right: 2px;
+    position: fixed;
+    top: 54%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 20rem;
+    z-index: 999999999999;
+}
+.active-task{
+    display: grid;
+    background-color: #f9fbfd;
+    padding: 2rem;
+    opacity: 1 !important;
+    border-radius: 4px;
+}
+.active-task-heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+form{
+    justify-content: center;
+    display: grid;
+    gap: 1rem;
+    font-weight: 500;
+}
+form input, select{
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    background-color: #eeeeee;
+    width: 19rem;
+}
+form select{
+    width: 19.99rem;
+}
+.active-task-details button{
+    background-color: #484c7f;
+    border: 1px solid #484c7f;
+    padding: 0.6rem;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+/* -------------for success message ------------- */
+.success-message{
+    display: none;
+}
+.active-success{
+    background-color: rgb(93, 245, 93);
+    display: flex;
+    justify-content: center;
+    padding: .5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+.mobile-navbar{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: -200%;
+    background-color: #fff;
+    padding: 2rem;
+    z-index: 9999999999999;
+    top: 0;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+  }
+  .navbar-close{
+    align-self: end;
+    position: absolute;
+    left: 80%;
+    top: 5%;
+  }
+/* ---------hamburger button---------- */
+.hamburger-button{
+display: none;
+}
+.hamburger-button .hamburger {
+    cursor: pointer;
+  }
+  
+  .hamburger-button .hamburger input {
+    display: none;
+  }
+  
+  .hamburger-button .hamburger svg {
+    /* The size of the SVG defines the overall size */
+    height: 3em;
+    /* Define the transition for transforming the SVG */
+    transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hamburger-button .line {
+    fill: none;
+    stroke: #000;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+    /* Define the transition for transforming the Stroke */
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hamburger-button .line-top-bottom {
+    stroke-dasharray: 12 63;
+  }
+  
+  .hamburger-button .hamburger input:checked + svg {
+    transform: rotate(-45deg);
+  }
+  
+  .hamburger-button .hamburger input:checked + svg .line-top-bottom {
+    stroke-dasharray: 20 300;
+    stroke-dashoffset: -32.42;
+  }
+/* ------------mobile navbar---------- */
+@media only screen and (max-width: 600px) {
+    .hamburger-button {
+        display: flex ;
+    }
+      .desk-navbar ul,.user-image{
+        display: none;
+      }
+      .active-user button{
+        display: none;
+      }
+      .mobile{
+        left: -8%;
+      }
+      .mobile ul{
+        display: grid;
+        gap: 2rem;
+        list-style: none;
+      }
+      .mobile ul a{
+        text-decoration: none;
+      }
+      .mobile-navbar button{
+        display: flex;
+      }
+      .mobile-user{
+        display: flex;
+      }
+
+
+}

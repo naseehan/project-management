@@ -1,0 +1,154 @@
+
+.home-page{
+    display: flex;
+    margin-bottom: 3rem;
+    gap: 2rem;
+}
+
+.home-info {
+   padding: 2rem;
+   border: 1px solid #f0f0f0;
+   border-radius: 4px;
+   background-color: #fff;
+}
+.home-img {
+    padding: 2rem;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    background-color: #fff;
+ }
+.home-info p{
+    line-height: 1.7;
+}
+.availability{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+.avail-list{
+    border: 1px solid #f0f0f0;
+    padding: 1rem;
+    border-radius: 4px;
+}
+.avail-list p{
+    color: #9a9b9d;
+}
+.application-interview{
+    display: flex;
+    gap: 1rem;
+    padding: 2rem;
+    background-color: #484c7f;
+    width: 84%;
+    color: #fff;
+}
+.application-img{
+    width: 70%;
+}
+.application-img img{
+    width: -webkit-fill-available;
+}
+.home-application{
+    width: 35%;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+.int-hired{
+    display: grid;
+    gap: 2rem;
+}
+.interview{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #f0f0f0;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 4px;
+}
+.interview h1{
+    margin: 0;
+}
+.interview span{
+    display: flex;
+    width: 56px;
+    height: 56px;
+    align-items: center;
+    justify-content: center;
+    background-color: #a0d9b4;
+    border-radius: 50%;
+}
+.full-employee-details{
+    display: grid;
+    justify-content: center;
+    gap: 2rem;
+    text-align: center;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.employee-details{
+    background-color: #fff;
+    padding: 0.9rem;
+    border-radius: 7px;
+}
+.employee-img img{
+    width: 16%;
+    border: 1px solid #DEE2E6;
+    border-radius: 50%;
+    padding: 3px;
+}
+.employee-details h1{
+    font-size: 2rem;
+    color: #484C7F;
+}
+.employee-details h5{
+    margin: 0;
+    font-size: 1rem;
+}
+.project-math{
+    background-color:  #F1C8DB;
+    padding: 2rem;
+    border-radius: 7px;
+}
+.project-math span{
+    font-weight: 700;
+}
+
+
+/* -----------for mobile devices-------------- */
+
+@media only screen and (max-width:1200px) {
+    .home-page{
+        display: grid;
+        /* grid-template-columns: 1fr ; */
+    }
+    .home-info{
+        min-width: 19rem;
+        width: fit-content;
+    }
+    /* .home-img {
+        min-width: 20rem !important;
+        width: auto;
+    } */
+   
+}
+@media only screen and (max-width:570px){
+ .full-employee-details{
+        display: grid;
+        grid-template-columns:1fr 1fr;
+        gap: 1rem;
+    }
+    .employee-details{
+        padding: 1rem;
+    }
+    .project-math {
+        padding: 1rem;
+    }
+    .employee-img img {
+        width: 50%;
+    }.home-img{
+        width: 24%;
+    }
+    .home-application{
+        width: 29%;
+    }
+}

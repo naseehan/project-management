@@ -1,0 +1,229 @@
+/* -------Main task page---------- */
+.task-management{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+}
+.task-progress{
+    background-color: #fff;
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    padding: 2rem;
+    height: 333px;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+/* ---------for Task progress------------ */
+.task-progress::-webkit-scrollbar {
+    display: none;
+}
+.progress-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.progress-title p{
+    font-size: .8rem;
+    font-weight: 500;
+}
+.main-progress-bar{
+    background-color: #f0f0f0;
+    height: 10px;
+    border-radius: 4px;
+    border: none;
+}
+.progress-bar{
+    background-color: #eee5ff;
+    height: 10px;
+    border-radius: 4px;
+    border: none;
+    width: 92%;
+}
+.p1{
+    background-color: #a8d7e0;
+    width: 60%;
+}
+.p2{
+    background-color: #A0D9B4;
+    width: 40%;
+}
+.p3{
+    background-color: #FFAA8A ;
+    width: 40%;
+}
+.p4{
+    background-color: #ffe28c ;
+    width: 30%;
+}
+/* ------------for recent activity ------------ */
+.each-activity{
+    padding: 1rem;
+    border-left: 1px solid #c9bfbf;
+    border-bottom: 1px solid #c9bfbf;
+    position: relative;
+}
+.each-activity::after{
+    transition: ease 0.1s;
+    border: 2px solid var(--border-color);
+    background: var(--color-900);
+    display: block;
+    position: absolute;
+    content: '';
+    width: 5px;
+    height: 5px;
+    top: 1.3em;
+    left: -3px;
+    border-radius: 30px;
+}
+.tbh::after{
+    background-color: #FF1843;
+}
+.tbh:hover::after{
+    transform: scale(2.7);
+}
+.timeline-info{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.timeline-info span{
+    background-color: aqua;
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+.ti-item1 span{
+    background-color: #CF9EAC ;
+}
+.ti-item2 span{
+    background-color: #CF9EAC;
+}
+.ti-item3 span{
+    background-color: #A883BA ;
+}
+.ti-item4 span{
+    background-color: #A883BA;
+}
+.activity-details h4, p{
+    margin: 0 0 4px;
+}
+.activity-details p{
+    font-weight: 400;
+    font-size: .9rem;
+}
+
+/* ------------ Allocated Task Members----------*/
+.each-member{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+.each-member img{
+    width: 16%;
+    border: 1px solid #DEE2E6;
+    border-radius: 50%;
+    padding: 3px;
+}
+.member-details h3, p{
+    margin: 0;
+}
+.member-details p{
+    font-weight: 400;
+    font-size: .9rem;
+}
+.remove-btn button{
+    background-color: #F1C8DB;
+    border: none;
+    padding: 0.7rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+@media only screen and (max-width: 1180px){
+    .task-management{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media only screen and (max-width: 768px){
+    .task-management{
+        grid-template-columns: 1fr ;
+    }
+}
+
+/* -------------Each Task----------- */
+.task-lists{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+.task-lists h3{
+    margin: 0;
+}
+.each-task{
+    gap: 1rem;
+    display: grid;
+    height: fit-content !important;
+    position: relative;
+    /* cursor: all-scroll; */
+}
+
+/* ------for assigning member-------- */
+.person-confirm {
+    display: none;
+}
+.member-confirm{
+    display: flex;
+    position: absolute;
+    z-index: 99999;
+    top: 30%;
+    right: 0px;
+    background-color: aquamarine;
+    padding: 1rem;
+    border: none;
+    border-radius: 3px;
+}
+.member-confirm input{
+    width: auto;
+}
+.task-assign{
+    display: flex;
+    justify-content: space-between;
+}
+.task-title{
+    width: fit-content;
+    background-color: aqua;
+    padding: 0.4rem;
+    border-radius: 5px;
+}
+.task-title h5{
+    margin: 0;
+}
+.assigned-member{
+    background-color: #b36bd4;
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: #fff;
+}
+.icons{
+    display: flex;
+    gap: 1rem;
+}
+.icons p{
+    gap: 0.8rem;
+    display: flex;
+    align-items: center;
+    font-size: .8rem;
+}
+@media only screen and (max-width: 864px){
+    .task-lists{
+        /* grid-template-rows: 1fr ; */
+        grid-template-columns: 1fr ;
+    }.task-lists h3{
+        display: none;
+
+    }
+}
+

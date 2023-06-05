@@ -1,0 +1,95 @@
+.create-project{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.create-project button{
+    border: 1px solid #a59b9b;
+    background-color: #484c7f;
+    height: fit-content;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    letter-spacing: 2px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.create-project i{
+    letter-spacing: 8px;
+}
+.all-projects{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+}
+.projects-box{
+    border: 1px solid lightgrey;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    width: -webkit-fill-available;
+    padding: 1rem;
+    background-color: #fff;
+}
+.heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.del-create button{
+    padding: 0.5rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    background-color: #fff;
+}
+.del-create button:hover {
+    background-color: #f19828;
+    cursor: pointer;
+}
+.del-create .fa-pen-to-square{
+    color: rgb(26, 194, 26);
+}
+.del-create .fa-trash{
+    color: rgb(163, 18, 18);
+}
+
+.project-details{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid #7f8183;
+    margin-bottom: 1rem;
+    gap: 1rem;
+    padding-bottom: 1rem;
+}
+.each-details{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.progress{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.progress span{
+    font-weight: 600;
+}
+.progress p{
+    background-color: #F1C8DB;
+}
+
+@media only screen  and (max-width: 950px) {
+    .all-projects{
+        display: grid;
+        grid-template-columns: 1fr 1fr ;
+        gap: 3rem;
+    }
+}
+@media only screen and (max-width: 600px){
+    .all-projects{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
