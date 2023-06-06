@@ -21,7 +21,7 @@ const [success, setSuccess] = useState(false)
 const handleSubmit = async (e) => {
   e.preventDefault()
   try {
-    await axios.post('http://localhost:3001/task', { name, description, date, member })
+    await axios.post(`${process.env.REACT_APP_BASE_URL}/task`, { name, description, date, member })
     console.log('Task saved successfully');
     setName('')
     setDescription('')
