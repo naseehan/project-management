@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import '../stylePages/loginStyles/App.css'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
     
 const [name, setName] = useState("")
 const [email, setEmail] = useState("")
 const [password, setPassword] = useState("")
+const navigate = useNavigate()
 
 const handleName = (e) => {
     setName(e.target.value)
@@ -28,7 +30,8 @@ const handleSubmit = async (e) => {
         setName('')
         setEmail('')
         setPassword('')
-       window.location.href = '/login'
+    //    window.location.href = "/login"
+    navigate("/login")
     } catch (error) {
         console.error('Error saving user', error);
     }
