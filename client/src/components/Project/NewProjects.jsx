@@ -11,7 +11,7 @@ const NewProjects = ({ data, setRetrievedProjects }) => {
 
 const handleRemoveProject = async ( _id ) => {
     try{
-        await axios.delete(`http://localhost:3001/projects/${_id}`,{
+        await axios.delete(`${process.env.REACT_APP_BASE_URL}/projects/${_id}`,{
             data: {
                 _id: _id
             }

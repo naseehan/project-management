@@ -43,7 +43,7 @@ useEffect(() => {
 const handleSubmit = async (e) => {
   e.preventDefault()
   try {
-    await axios.post('http://localhost:3001/projects', { name, members, date })
+    await axios.post(`${process.env.REACT_APP_BASE_URL}/projects`, { name, members, date })
     console.log('Task saved successfully');
     setName('')
     setMembers('')

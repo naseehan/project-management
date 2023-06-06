@@ -77,7 +77,7 @@ useEffect(() => {
   // fetch data from server
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/task') 
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/task`) 
       setTaskData(response.data)
     } catch (error) {
       console.error('Error fetching tasks:', error);

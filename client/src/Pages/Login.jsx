@@ -10,11 +10,10 @@ const [name, setName] = useState("")
 const [password, setPassword] = useState("")
 const [_, setCookies] = useCookies(["access_token"])
 const navigate = useNavigate()
-
 const handleSubmit = async (e) => {
     e.preventDefault()
     try{
-    const response = await axios.post("http://localhost:3001/login",{name, password})
+    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`,{name, password})
         
     setCookies("access_token", response.data.token)
     window.localStorage.setItem("userID", response.data.userID)
