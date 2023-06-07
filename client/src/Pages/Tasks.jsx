@@ -86,7 +86,7 @@ useEffect(() => {
 
   fetchData()
   
-}, [taskData])
+}, [name, date])
 
 // useEffect(() => {
 //   // Log the names of projects
