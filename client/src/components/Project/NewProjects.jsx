@@ -22,12 +22,10 @@ const handleRemoveProject = async ( _id ) => {
     } catch (error) {
         console.error('Error deleting data:', error);
     }
-
 }
 
 
-  return (
-
+return (
 <>
 {data.map(( data ) => (
     <div className="projects-box" key={data._id}>

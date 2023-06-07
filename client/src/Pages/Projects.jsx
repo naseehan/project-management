@@ -69,7 +69,7 @@ useEffect(() => {
   }
   fetchData()
   
-}, [retrievedProjects])
+}, [name, date])
 
 // useEffect(() => {
 //   // Log the names of projects

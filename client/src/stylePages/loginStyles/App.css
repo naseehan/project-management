@@ -17,6 +17,13 @@
     color: #fff;
     justify-items: center;
 }
+/* for error message */
+.error-message{
+    background-color: #d30f0f;
+    color: #fff !important;
+    padding: 0.4rem;
+    border-radius: 4px;
+}
 .login-form input{
     padding: 1rem;
 }
