@@ -2,24 +2,7 @@ import React, { useState } from 'react';
 
 const NewTasks = (props) => {
   const [activeId, setActiveId] = useState(null);
-  const [memberName, setMemberName] = useState('');
-  const [afterSubmit, setAfterSubmit] = useState(false);
 
-  const handleMember = (id, name) => {
-    setActiveId(id === activeId ? null : id);
-    setMemberName('');
-    setAfterSubmit(false);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setActiveId(null);
-    setAfterSubmit(true);
-  };
-
-  const handleChange = (e) => {
-    setMemberName(e.target.value);
-  };
 
   return (
     <>
@@ -34,19 +17,13 @@ const NewTasks = (props) => {
             <div className="task-title" style={{ backgroundColor: 'rgb(168, 215, 224)' }}>
               <h5>{data.name}</h5>
             </div>
-            <div id={data._id} className="assigned-member" onClick={() => handleMember(data._id, data.name)}>
-              {afterSubmit ? <span>{memberName.substring(0, 2).toUpperCase()}</span> : <i className="fa-solid fa-user"></i>}
+            <div id={data._id} className="assigned-member"
+             >
+              
+              <span>{data.member.split(" ").map((part) => part[0]).join("")}</span>
             </div>
           </div>
-          {activeId === data._id && (
-            <div className="person-confirm member-confirm">
-              <form action="" onSubmit={handleSubmit}>
-                <label htmlFor="name">Assignee</label>
-                <input type="text" name="name" id="name" value={memberName} onChange={handleChange} />
-                <button type="submit">Confirm</button>
-              </form>
-            </div>
-          )}
+
           <p>{data.description}</p>
           <div className="icons">
             <p>
