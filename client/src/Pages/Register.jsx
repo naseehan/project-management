@@ -8,6 +8,7 @@ const Register = () => {
 const [name, setName] = useState("")
 const [email, setEmail] = useState("")
 const [password, setPassword] = useState("")
+const [error, setError] = useState('')
 const navigate = useNavigate()
 
 const handleName = (e) => {
@@ -30,11 +31,18 @@ const handleSubmit = async (e) => {
         setName('')
         setEmail('')
         setPassword('')
-    //    window.location.href = "/login"
     navigate("/login")
     } catch (error) {
-        console.error('Error saving user', error);
+        if(error.response.status === 300) {
+            setError("User name already exists")
+        }
+    setTimeout(() => {
+        setError(null)
+    }, 2000);
     }
+    setName('')
+    setEmail('')
+    setPassword('')
 }
 
   return (
@@ -44,6 +52,8 @@ const handleSubmit = async (e) => {
             <div className="register-form login-form">
                 <h1>Create your account</h1>
                 <form action="" onSubmit={handleSubmit}>
+                {error && <p className='error-message'>{error}</p>}
+
                     <label htmlFor="name">Full Name</label>
                     <input type="text" name="name" value={name} id="name" placeholder='John Doe' onChange={handleName} required/>
                     <label htmlFor="email">Email Address</label>
