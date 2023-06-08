@@ -25,6 +25,15 @@ const handleRemoveProject = async ( _id ) => {
 }
 
 
+const today = new Date();
+const year = today.getFullYear();
+const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based, so we add 1
+const day = String(today.getDate()).padStart(2, '0');
+
+const todayDate = `${year}-${month}-${day}`;
+
+console.log(todayDate);
+
 return (
 <>
 {data.map(( data ) => (
@@ -37,6 +46,7 @@ return (
             <button className="fa-solid fa-trash" onClick={() => handleRemoveProject(data._id)}></button>
         </div>
     </div>
+
 
     <div className="project-details">
         <div className='each-details'>
@@ -60,7 +70,9 @@ return (
 
     <div className="progress">
         <span>Progress</span>
-        <p>93 days left</p>
+        {/* compare todays date with user selected date the result is
+         in millieseconds so add calculation in end to make it in days  */}
+        <p>{Math.floor(new Date(data.date) - new Date(todayDate)) /(1000 * 60 * 60 * 24)} days left</p>
     </div>
 
 
