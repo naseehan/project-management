@@ -116,7 +116,7 @@ useEffect(() => {
             <input type="text" name="name" id="name" value={name} onChange={handleName} required/>
             <label htmlFor="desc">Members Needed</label>
             <input type="number" name="members" id="members" value={members} onChange={handleMembers} required/>
-            <label htmlFor="date">Project Start Date</label>
+            <label htmlFor="date">Project End Date</label>
             <input type="date" name="date" id="date" value={date} onChange={handleDate} required/>
             <button type='submit'>Submit</button>
           </form>
