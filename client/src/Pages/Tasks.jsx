@@ -141,7 +141,7 @@ useEffect(() => {
               <option value="Mary Joseph">Mary Joseph</option>
               <option value="Catherine Vil">Catherine Vil</option>
             </select>
-            <label htmlFor="date">Task Start Date</label>
+            <label htmlFor="date">Task End Date</label>
             <input type="date" name="date" id="date" value={date} onChange={handleDate}  required/>
             <button type='submit'>Submit</button>
           </form>
