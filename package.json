@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "firebase": "^9.22.2",
+    "react-google-button": "^0.7.2",
+    "react-google-login": "^5.2.2",
+    "react-google-recaptcha": "^3.1.0",
     "yup": "^1.2.0"
   }
 }

@@ -3,6 +3,12 @@ import '../stylePages/loginStyles/App.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import axios from 'axios'
+import ReCAPTCHA from "react-google-recaptcha";
+// import { signInWithGoogle } from '../Firebase'
+import {GoogleButton} from 'react-google-button'
+import { initializeApp } from "firebase/app";
+import {getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
+
 
 const Login = ({setUser, setAdminEmail}) => {
 
@@ -11,6 +17,49 @@ const [password, setPassword] = useState("")
 const [_, setCookies] = useCookies(["access_token"])
 const [error, setError] = useState('')
 const navigate = useNavigate()
+
+
+// GOOGLE LOGIN
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCA7muuYypfh_6gzjriopbw7fqL_gDsmpU",
+    authDomain: "auth-318bd.firebaseapp.com",
+    projectId: "auth-318bd",
+    storageBucket: "auth-318bd.appspot.com",
+    messagingSenderId: "354771236412",
+    appId: "1:354771236412:web:f7731efd7ce12173b1f539",
+    measurementId: "G-9WE11TY9N7"
+  };
+  
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  // const analytics = getAnalytics(app);
+   const auth = getAuth(app)
+  
+  const provider = new GoogleAuthProvider()
+  
+  const signInWithGoogle = async (e) => {
+    e.preventDefault();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const name = result.user.displayName;
+      const email = result.user.email;
+    //   const password = "58e9wuwhgehrtirytourt"
+    //    await axios.post(`${process.env.REACT_APP_BASE_URL}/register`, { name, email, password});
+       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`, {name})
+
+      setCookies("access_token", response.data.token);
+      window.localStorage.setItem("userID", response.data.userID);
+  
+      setUser(name);
+      setAdminEmail(email);
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+
 
 
 const handleSubmit = async (e) => {
@@ -43,6 +92,10 @@ const handleSubmit = async (e) => {
 }
 }
 
+const onChange = () => {
+
+}
+
   return (
     <>
         <section className='login-section'>
@@ -65,14 +118,22 @@ const handleSubmit = async (e) => {
                                required 
                                onChange={(e) => setPassword(e.target.value)}
                         />
+                         <ReCAPTCHA
+                               sitekey={process.env.REACT_APP_SITE_KEY}
+                               onChange={onChange}
+                        />
                         <button type='submit'>Sign in</button>
-                        <p>  Don't have an account yet ? 
+                        <p>  Don't have an account yet ?  
                             <Link to="/register">
-                              Sign up here 
+                               Sign up here 
                              </Link>
                         </p>
+                       <pre>----------------- O R -----------------</pre>
+                       <GoogleButton onClick={signInWithGoogle}/>
                     </form>
-                   
+
+
+
                 </div>
                 
             </div>

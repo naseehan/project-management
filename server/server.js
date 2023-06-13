@@ -1,4 +1,5 @@
 const express = require('express')
+//Object Data Modeling library for Node.js and MongoDB
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -6,12 +7,14 @@ const app = express()
 const dotenv = require('dotenv');
 dotenv.config();
 
-
+//  Cross-Origin Resource Sharing - to make cross-origin HTTP requests securely
 const cors = require('cors');
 app.use(cors());
 // connect to mongodb
 mongoose.connect(process.env.MONGO_URL , {
+    // tells Mongoose to use the new MongoDB connection string parser
     useNewUrlParser: true,
+    // enables the new unified topology engine for monitoring server connections.
     useUnifiedTopology: true,
 });
 
@@ -40,14 +43,19 @@ const userSchema = new mongoose.Schema({
     },
 })
 
+                            // Middlewares
+
+// allows  application to handle JSON data sent in the request body
+// Express.js will automatically parse the JSON data and make it available in req.body
 app.use(express.json())
+// allows application to handle form data submitted via HTML forms.
 app.use(express.urlencoded({ extended: false}))
 
-
+// use schema to create mongoose model
 const Task = mongoose.model('Task', taskSchema)
 const Project = mongoose.model('Project', projectSchema)
 const User = mongoose.model('User', userSchema)
-app.use(express.json())
+// app.use(express.json())
 
 // API endpoint for saving a task
 app.post('/task', async (req, res) => {
@@ -64,7 +72,9 @@ app.post('/task', async (req, res) => {
 // API endpoint for saving a project
 app.post('/projects', async (req, res) => {
     try {
+// extracts the values from the request body
         const {name, members, date } = req.body
+//creates a new instance of the 'Project' model with the extracted values
         const project = new Project ({ name, members, date })
         await project.save()
         res.status(201).json({ message: 'Project saved successfully' })
@@ -94,24 +104,43 @@ app.post('/register' , async (req, res) => {
     }
 })
 
-
 // API endpoint for logging in
-app.post("/login", async (req,res) => {
-    const {name, password} = req.body
-    const user = await User.findOne({ name })
-
-    if(!user) {
-        return res.status(400).json({ message: "User does'nt exist "})
+app.post("/login", async (req, res) => {
+    const { name, password, email } = req.body;
+  
+    if (name && password) {
+      // Logging in with email and password
+      const user = await User.findOne({ name });
+  
+      if (!user) {
+        return res.status(400).json({ message: "User doesn't exist" });
+      }
+  
+      const isPasswordTrue = await bcrypt.compare(password, user.password);
+  
+      if (!isPasswordTrue) {
+        return res.status(300).json({ message: "Email or Username is Incorrect" });
+      }
+  
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      res.json({ token, userID: user._id, name: user.name, email: user.email });
+    } else {
+      // Logging in with Google account
+    //   password is not present
+      try {
+          const user = new User({ name, email });
+          const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+          res.status(201).json({ message: 'User created successfully', token, userID: user._id, name: user.name, email: user.email });
+        
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+      }
     }
+  });
+  
 
-    const isPasswordTrue = await bcrypt.compare(password, user.password)
 
-    if(!isPasswordTrue) {
-        return res.status(300).json({ message: "Email or Username is Incorrect"})
-    }
-   const token = jwt.sign({id: user._id}, process.env.JWT_SECRET)
-   res.json({token, userID: user._id, name: user.name, email: user.email})
-})
 
 // API endpoint for deleting a project
 app.delete('/projects/:projectId', async (req, res) => {
